@@ -1,0 +1,70 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding">
+
+  <img src="../../../assets/imgs/left-ring.svg" class="leftRing">
+  <img src="../../../assets/imgs/right-ring.svg" class="rightRing">
+
+  <div class="ion-text-center mt-3 mb-3">
+    <h3>Tutor Signup!</h3>
+    <p>Become a verified tutor, add your services, and get tutoring requests from students.</p>
+  </div>
+
+  <ion-grid [formGroup]="onRegisterForm" class="ion-padding">
+    <ion-item class="rounded mb-1" lines="none">
+      <ion-label position="floating">Full Name</ion-label>
+      <ion-input formControlName="fullName" type="email" placeholder="Name"></ion-input>
+    </ion-item>
+    <p class="errorMsg" *ngIf="onRegisterForm.get('fullName').hasError('required') &&
+        (onRegisterForm.get('fullName').dirty || onRegisterForm.get('fullName').touched)">
+      *Full name is required!
+    </p>
+
+    <ion-item class="rounded mb-1" lines="none">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
+    </ion-item>
+    <p class="errorMsg" *ngIf="(onRegisterForm.get('email').hasError('pattern') ||
+    onRegisterForm.get('email').hasError('required')) &&
+        (onRegisterForm.get('email').dirty || onRegisterForm.get('email').touched)">
+      *Valid email address is required!
+    </p>
+
+    <ion-item class="rounded mb-1" lines="none">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <p class="errorMsg" *ngIf="onRegisterForm.get('password').hasError('required') &&
+        (onRegisterForm.get('password').dirty || onRegisterForm.get('password').touched)">
+      *Choose a strong password!
+    </p>
+
+    <ion-item class="rounded mb-1" lines="none">
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input formControlName="cPassword" type="password" placeholder="Re-enter Password"></ion-input>
+    </ion-item>
+    <p class="errorMsg" *ngIf="onRegisterForm.get('cPassword').hasError('required') &&
+        (onRegisterForm.get('cPassword').dirty || onRegisterForm.get('cPassword').touched)">
+      *Confirm your password!
+    </p>
+
+    <ion-button expand="block" class="rounded h-50" (click)="createAccount(onRegisterForm.value)"
+      [disabled]="loginProcessing">
+      <ion-spinner *ngIf="loginProcessing"></ion-spinner>
+      <span *ngIf="!loginProcessing">Signup</span>
+    </ion-button>
+
+    <ion-button expand="block" class="rounded h-50 mt-1" color="secondary" routerLink="/login">
+      Already have an account? Login
+    </ion-button>
+
+    <p style="line-height: 1.5;" class="ion-text-center">By continuing, you agree to our <br />
+      <ion-text color="secondary">Terms & Conditions</ion-text>
+    </p>
+  </ion-grid>
+
+</ion-content>

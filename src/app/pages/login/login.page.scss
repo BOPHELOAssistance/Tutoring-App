@@ -1,0 +1,17 @@
+ion-content {
+    .leftRing {
+        width: 200px;
+        position: absolute;
+        z-index: 0;
+        left: -20px;
+        bottom: -80px;
+    }
+
+    .rightRing{
+        width: 200px;
+        position: absolute;
+        z-index: 0;
+        right: -20px;
+        top: 160px;
+    }
+}

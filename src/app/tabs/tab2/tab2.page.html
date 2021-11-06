@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Calendar</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="getTodaysData()">Today</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="bg-white lightshadow ion-padding">
+    <div class="calendarCont">
+      <div class="icon">
+        <ion-icon (click)="prevWeek()" color="primary" name="chevron-back-outline"></ion-icon>
+      </div>
+      <p class="font-14 bold primary my-0">
+        <span *ngIf="selectedDate === todaysDate">Today - </span>
+        <span *ngIf="selectedDate">{{getDisplaySelectedDate() | date: 'mediumDate'}}</span>
+      </p>
+      <div class="icon">
+        <ion-icon (click)="nextWeek()" color="primary" name="chevron-forward-outline"></ion-icon>
+      </div>
+    </div>
+    <div class="daysCont">
+      <div *ngFor="let day of selectedWeekDates" class="day" (click)="updateSelectedDay(day)">
+        <div class="letter" [class.tertiary]="hasEvent(day.fullDate)" [class.selected]="selectedDate===day.fullDate">
+          {{day.date}}
+        </div>
+        <p class="font-10 pt-1 mb-0 mt-0">{{getDayName(day.day)}}</p>
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div *ngFor="let offer of allEvents" class="rounded bg-white lightshadow mb-1" style="padding: 10px 0;">
+    <ion-item class="rounded">
+      <ion-label>
+        <h2 class="bold">{{offer.offerTitle}}</h2>
+        <h4 class="gray" style="margin: 7px 0;">
+          <ion-icon name="calendar-number-outline" style="position: absolute;"></ion-icon>
+          <span class="ion-margin-horizontal">{{offer.date}}</span>
+          <ion-icon name="time-outline" style="position: absolute;"></ion-icon>
+          <span class="ion-margin-start">{{offer.startTime}} to {{offer.endTime}}</span>
+        </h4>
+      </ion-label>
+      <ion-badge color="secondary" slot="end">R{{offer.offerAmount}}</ion-badge>
+    </ion-item>
+    <ion-row style="padding: 0 10px;">
+      <ion-col *ngIf="!offer.status" size="6">
+        <ion-button expand="block" color="danger">Cancel</ion-button>
+      </ion-col>
+      <ion-col size="{{offer.status === 'completed' || offer.status==='cancelled' ? '12': '6'}}">
+        <ion-button *ngIf="!offer.status" expand="block" color="primary">Deliver</ion-button>
+        <ion-button *ngIf="offer.status==='completed'" expand="block" color="success">
+          Completed - Rate Your Experience
+        </ion-button>
+        <ion-button *ngIf="offer.status==='rated'" expand="block" color="success">Rated</ion-button>
+        <ion-button *ngIf="offer.status==='cancelled'" expand="block" color="danger">Cancelled</ion-button>
+      </ion-col>
+      <ion-col *ngIf="offer.status==='rated'" size="6">
+        <ion-button expand="block" color="warning">
+          <ion-icon name="star" slot="start"></ion-icon> {{offer.rating}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</ion-content>

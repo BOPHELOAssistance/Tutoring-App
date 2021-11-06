@@ -1,0 +1,25 @@
+ion-content {
+    .userInfo {
+        ion-avatar {
+            width: 80px;
+            height: 80px;
+        }
+        img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+    }
+
+    .anItem {
+        ion-icon {
+            font-size: 30px;
+        }
+        h1 {
+            margin: 10px 0;
+        }
+        p {
+            margin: 0;
+        }
+    }
+}

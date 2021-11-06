@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <div class="ion-text-center" style="position: relative;">
+        <img [src]="imagePath || './assets/imgs/user-1.png'" class="profileImg">
+        <ion-fab style="margin: 0.2em;" vertical="center" horizontal="center">
+            <ion-fab-button color="secondary" (click)="pictureClick()" size="small">
+                <ion-icon name="create"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+    </div>
+
+    <h5 class="dark mt-1 mb-1">Account information:</h5>
+
+    <ion-item lines="none" class="rounded mb-1">
+        <ion-label class="dark" position="stacked">Full name:</ion-label>
+        <ion-input [(ngModel)]="currentUser.fullName" class="dark" autocapitalize="sentences" type="text"
+            placeholder="Full name"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="rounded mb-1">
+        <ion-label class="dark" position="stacked">Email:</ion-label>
+        <ion-input [(ngModel)]="currentUser.email" class="dark" disabled type="email" placeholder="Email"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="rounded mb-1">
+        <ion-label class="dark" position="stacked">Phone:</ion-label>
+        <ion-input [(ngModel)]="currentUser.phone" class="dark" type="tel" placeholder="Phone">
+        </ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="rounded mb-1">
+        <ion-label class="dark" position="stacked">City:</ion-label>
+        <ion-input [(ngModel)]="currentUser.city" class="dark" type="text" placeholder="City">
+        </ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="rounded mb-1">
+        <ion-label class="dark" position="stacked">Country:</ion-label>
+        <ion-input [(ngModel)]="currentUser.country" class="dark" autocapitalize="sentences" type="text"
+            placeholder="Country"></ion-input>
+    </ion-item>
+
+    <h5 class="dark mt-1 mb-1">Other information:</h5>
+
+    <ion-item lines="none" class="rounded mb-1">
+        <ion-label class="dark" position="stacked">Gender:</ion-label>
+        <ion-select [(ngModel)]="currentUser.gender" class="dark" interface="popover">
+            <ion-select-option>Male</ion-select-option>
+            <ion-select-option>Female</ion-select-option>
+            <ion-select-option>Other</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item lines="none" class="rounded mb-1">
+        <ion-label class="dark" position="stacked">Date of birth:</ion-label>
+        <ion-datetime [(ngModel)]="currentUser.dob" class="dark" placeholder="Date of birth" [max]="maxYear">
+        </ion-datetime>
+    </ion-item>
+
+    <ion-button color="secondary" (click)="updateProfile()" expand="block" class="ion-no-margin h-50">
+        Save Profile
+    </ion-button>
+
+</ion-content>

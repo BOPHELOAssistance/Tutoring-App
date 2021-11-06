@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Messages</ion-title>
+  </ion-toolbar>
+  <ion-item lines="none">
+    <ion-icon name="search" slot="start"></ion-icon>
+    <ion-input type="text" placeholder="Search..."></ion-input>
+  </ion-item>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item *ngFor="let chat of chats" lines="none" class="rounded lightshadow mb-1">
+    <ion-avatar slot="start">
+      <img src="./assets/imgs/onlineIcon.png" class="onlineUser">
+      <img [src]="chat.profileURL || './assets/imgs/user.png'">
+    </ion-avatar>
+    <ion-label>
+      <h2 class="bold">{{chat.fullName}}</h2>
+      <p> What time is our session??</p>
+    </ion-label>
+
+    <span slot="end">
+      <ion-icon class="ion-float-right" name="ellipsis-vertical" color="secondary" slot="end"></ion-icon> <br />
+      <small class="gray">2 mins ago</small>
+    </span>
+  </ion-item>
+
+</ion-content>
